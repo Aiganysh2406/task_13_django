@@ -1,0 +1,38 @@
+
+
+from item.models import Student, Course
+
+student1 = Student.objects.create(first_name='John', last_name='Doe', email='john@example.com', age=12)
+student2 = Student.objects.create(first_name='Jane', last_name='Doe', email='jane@example.com', age=13)
+
+course1 = Course.objects.create(name='Introduction to python', description='Learning python')
+course2 = Course.objects.create(name='Advanced genomics', description='Deepen your Biotechnology knowledge')
+
+
+course1.students.add(student1, student2)
+course2.students.add(student2)
+
+students_in_course1 = course1.students.all()
+students_in_course2 = course2.students.all()
+
+for student in students_in_course1:
+    print(f"{student.first_name} {student.last_name} is enrolled in {course1.name}")
+
+for student in students_in_course2:
+    print(f"{student.first_name} {student.last_name} is enrolled in {course2.name}")
+
+
+
+
+
+from django.contrib import admin
+from .models import Student, Course
+
+admin.site.register(Student)
+admin.site.register(Course)
+
+
+python manage.py runserver
+Перейдите по адресу http://127.0.0.1:8000/admin/ в вашем веб-браузере и войдите в админку.
+
+

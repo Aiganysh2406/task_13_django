@@ -1,0 +1,250 @@
+для создания проекта пишем команду
+"django-admin startproject <название проекта> ."
+
+для созданияприложения пишем команду:
+"python3 manage.py startapp <название приложения>"
+закидываем приложения в INSTALLED_APPS
+
+миграции:
+     "pythone3 manage.py makemigrations"(commit)
+      "pythone3 manage.py migrate"(push)
+запуск проекта:
+       "pythone3 manage.py runserver
+для создания супер юзера:
+     "pythone3 manage.py createsuperuser"
+
+
+
+from <название приложения> import <название модели>
+
+QuerySet - набор данных(список с данными)
+
+list:
+<название модели>.objects.all() - получение всеч данных
+retrieve:
+<название модели>.objects.get(pk=1) - получение данных по определенным критериям
+create:
+<название модели>.objects.create(
+    field='value',
+    field2 = value
+)
+
+update:
+функция update если хотите обновить несколько обьктов
+<название модели>.objects.filter(field='value').update(
+    field='new value'
+)
+
+обращение к аттрибуту если хотитте обновить 1 обьект
+item.field = 'new_field'
+item.save()
+
+delete:
+obj = <название модели>.objects.get(field='value')
+obj.delete()
+
+
+
+создать 3 обьекта
+1 - обнавить title на 'here is new'
+2 - удалить 2 обьект
+3 - обнавить все 3 поля
+
+
+#создать 2 приложения
+должно быть 2 модели author и book. они должнs связываться 
+создать новый обьект через терминал
+
+
+
+
+
+
+
+     hello@hello-HP-245-G8-Notebook-PC:~$ cd Desktop/
+hello@hello-HP-245-G8-Notebook-PC:~/Desktop$ rm -rf file.sql
+hello@hello-HP-245-G8-Notebook-PC:~/Desktop$ ls
+'New Folder'   prjects   py31   pycharm-edu-2022.2.2.tar.gz
+hello@hello-HP-245-G8-Notebook-PC:~/Desktop$ mkdir django_projects
+hello@hello-HP-245-G8-Notebook-PC:~/Desktop$ cd django_projects/
+hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 -m venv venv
+. hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ . venv/bin/activate
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ touch requirements.txt
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ ls
+requirements.txt  venv
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ code .
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ pip install -r requirements.txt
+Collecting psycopg2-binary
+  Using cached psycopg2_binary-2.9.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+Collecting django
+  Downloading Django-5.0-py3-none-any.whl (8.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.1/8.1 MB 259.4 kB/s eta 0:00:00
+Collecting asgiref>=3.7.0
+  Downloading asgiref-3.7.2-py3-none-any.whl (24 kB)
+Collecting sqlparse>=0.3.1
+  Downloading sqlparse-0.4.4-py3-none-any.whl (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.2/41.2 KB 247.0 kB/s eta 0:00:00
+Collecting typing-extensions>=4
+  Using cached typing_extensions-4.9.0-py3-none-any.whl (32 kB)
+Installing collected packages: typing-extensions, sqlparse, psycopg2-binary, asgiref, django
+Successfully installed asgiref-3.7.2 django-5.0 psycopg2-binary-2.9.9 sqlparse-0.4.4 typing-extensions-4.9.0
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ django-admin startproject config .
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py makemigrations
+/home/hello/Desktop/django_projects/venv/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:160: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  database "py31_django_test" does not exist
+
+  warnings.warn(
+No changes detected
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ psql
+psql (14.9 (Ubuntu 14.9-0ubuntu0.22.04.1))
+Type "help" for help.
+
+hello=# create database py31_django_test;
+CREATE DATABASE
+hello=# \q
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py makemigrations
+No changes detected
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py startapp item
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ ls
+config  item  manage.py  requirements.txt  venv
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py makemigrations
+Traceback (most recent call last):
+  File "/home/hello/Desktop/django_projects/manage.py", line 22, in <module>
+    main()
+  File "/home/hello/Desktop/django_projects/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/hello/Desktop/django_projects/venv/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/hello/Desktop/django_projects/venv/lib/python3.10/site-packages/django/core/management/__init__.py", line 416, in execute
+    django.setup()
+  File "/home/hello/Desktop/django_projects/venv/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/hello/Desktop/django_projects/venv/lib/python3.10/site-packages/django/apps/registry.py", line 116, in populate
+    app_config.import_models()
+  File "/home/hello/Desktop/django_projects/venv/lib/python3.10/site-packages/django/apps/config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/hello/Desktop/django_projects/item/models.py", line 9
+    models.
+           ^
+SyntaxError: invalid syntax
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py makemigrations
+Migrations for 'item':
+  item/migrations/0001_initial.py
+    - Create model Item
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, item, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying item.0001_initial... OK
+  Applying sessions.0001_initial... OK
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 11, 2023 - 13:15:33
+Django version 5.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+[11/Dec/2023 13:15:53] "GET / HTTP/1.1" 200 10629
+[11/Dec/2023 13:15:54] "GET / HTTP/1.1" 200 10629
+Not Found: /favicon.ico
+[11/Dec/2023 13:15:54] "GET /favicon.ico HTTP/1.1" 404 2110
+[11/Dec/2023 13:15:54] "GET / HTTP/1.1" 200 10629
+[11/Dec/2023 13:15:54] "GET / HTTP/1.1" 200 10629
+[11/Dec/2023 13:17:48] "GET /admin/ HTTP/1.1" 302 0
+[11/Dec/2023 13:17:48] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4158
+[11/Dec/2023 13:17:48] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2682
+[11/Dec/2023 13:17:48] "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+[11/Dec/2023 13:17:48] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[11/Dec/2023 13:17:48] "GET /static/admin/css/base.css HTTP/1.1" 200 21544
+[11/Dec/2023 13:17:48] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+[11/Dec/2023 13:17:48] "GET /static/admin/css/login.css HTTP/1.1" 200 958
+[11/Dec/2023 13:17:48] "GET /static/admin/css/responsive.css HTTP/1.1" 200 17905
+^C(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py createsuperuser
+Username (leave blank to use 'hello'): admin
+Email address: admin@admin.com
+Password: 
+Password (again): 
+This password is too common.
+This password is entirely numeric.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ pythone3 manage.py runserver
+Command 'pythone3' not found, did you mean:
+  command 'python3' from deb python3 (3.10.6-1~22.04)
+Try: sudo apt install <deb name>
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ python3 manage.py help
+
+Type 'manage.py help <subcommand>' for help on a specific subcommand.
+
+Available subcommands:
+
+[auth]
+    changepassword
+    createsuperuser
+
+[contenttypes]
+    remove_stale_contenttypes
+
+[django]
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations
+    migrate
+    optimizemigration
+    sendtestemail
+    shell
+    showmigrations
+    sqlflush
+    sqlmigrate
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+[sessions]
+    clearsessions
+
+[staticfiles]
+    collectstatic
+    findstatic
+    runserver
+(venv) hello@hello-HP-245-G8-Notebook-PC:~/Desktop/django_projects$ 
